@@ -114,21 +114,41 @@ for k, v in pairs(KVL['Coords'].Dealers) do
 end
 
 Citizen.CreateThread(function()
-    for k,v in pairs(KVL.Peds) do
-        RequestModel(v.ped)
-        while not HasModelLoaded(v.ped) do
+    for k,v in pairs(KVL['Coords'].Buyers) do
+        RequestModel(v.npc.ped)
+        while not HasModelLoaded(v.npc.ped) do
             Wait(1)
         end
-        stanley = CreatePed(1, v.ped, v.x, v.y, v.z - 1, v.h, false, true)
+        stanley = CreatePed(1, v.npc.ped, v.npc.x, v.npc.y, v.npc.z - 1, v.npc.h, false, true)
         SetBlockingOfNonTemporaryEvents(stanley, true)
         SetPedDiesWhenInjured(stanley, false)
         SetPedCanPlayAmbientAnims(stanley, true)
         SetPedCanRagdollFromPlayerImpact(stanley, false)
         SetEntityInvincible(stanley, true)
         FreezeEntityPosition(stanley, true)
-        TaskStartScenarioInPlace(stanley, v.anim, 0, true);
+        TaskStartScenarioInPlace(stanley, v.npc.anim, 0, true);
+        
     end
+
+    for k,v in pairs(KVL['Coords'].Dealers) do
+        RequestModel(v.npc.ped)
+        while not HasModelLoaded(v.npc.ped) do
+            Wait(1)
+        end
+        stanley = CreatePed(1, v.npc.ped, v.npc.x, v.npc.y, v.npc.z - 1, v.npc.h, false, true)
+        SetBlockingOfNonTemporaryEvents(stanley, true)
+        SetPedDiesWhenInjured(stanley, false)
+        SetPedCanPlayAmbientAnims(stanley, true)
+        SetPedCanRagdollFromPlayerImpact(stanley, false)
+        SetEntityInvincible(stanley, true)
+        FreezeEntityPosition(stanley, true)
+        TaskStartScenarioInPlace(stanley, v.npc.anim, 0, true);
+        
+    end
+
 end)
+
+
 
 
 
