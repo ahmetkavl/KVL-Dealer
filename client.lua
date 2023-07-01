@@ -73,7 +73,6 @@ end
 
 
 local ox_target = exports.ox_target
-local ox_inventory = exports.ox_inventory
 
 for k, v in pairs(KVL['Coords'].Buyers) do
     ox_target:addSphereZone({
@@ -147,8 +146,6 @@ Citizen.CreateThread(function()
     end
 
 end)
-
-
 
 
 
